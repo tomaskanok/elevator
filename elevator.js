@@ -1,7 +1,7 @@
 {
     /*
         https://play.elevatorsaga.com/
-        challange 4 success
+        challange 4, 5  success
     */
     
     init: function(elevators, floors) {
