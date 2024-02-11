@@ -1,9 +1,9 @@
 {
     /*
         https://play.elevatorsaga.com/
-        challange 4, 5  success
+        challange 6 success
     */
-    
+
     init: function(elevators, floors) {
         var debug = true;
 
@@ -28,17 +28,21 @@
             (function (index) {
                 elevators[index].on("idle", function () {
 
-                    if (this.getPressedFloors().length > 0) {
-                        debug ? console.log("getPressedFloors" + orderElevator(this.getPressedFloors())) : false;
+                    console.log("load: " + index + " " + elevators[index].loadFactor());
+                    if (elevators[index].loadFactor() > 0.3) {
 
-                        this.destinationQueue = orderElevator(this.getPressedFloors())
+                        if (this.getPressedFloors().length > 0) {
+                            debug ? console.log("getPressedFloors" + orderElevator(this.getPressedFloors())) : false;
 
-                        this.checkDestinationQueue();
-                    } else {
-                        console.log("p1 " + p);
-                        if (p.length > 0) {
-                            elevators[index].goToFloor(p[0]);
-                            p.shift()
+                            this.destinationQueue = orderElevator(this.getPressedFloors())
+
+                            this.checkDestinationQueue();
+                        } else {
+                            console.log("p1 " + p);
+                            if (p.length > 0) {
+                                elevators[index].goToFloor(p[0]);
+                                p.shift()
+                            }
                         }
                     }
                 });
